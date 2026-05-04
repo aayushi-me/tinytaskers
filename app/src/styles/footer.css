@@ -1,0 +1,23 @@
+/* Footer styles */
+.footer {
+  background-color: #63047857;
+  color: #2b0234f6;
+  text-align: center;
+  padding: 15px 0; /* Footer padding */
+  font-size: 1rem;
+  position: fixed; /* Fixed position */
+  bottom: 0; /* Stick to the bottom of the viewport */
+  left: 0; /* Align with the left edge */
+  width: 100%; /* Full width */
+  z-index: 1000; /* Ensure it's above other elements */
+}
+
+.footer a {
+  color: #2b0234f6;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}

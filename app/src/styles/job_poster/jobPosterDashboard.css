@@ -1,0 +1,290 @@
+  /* Poster Dashboard Container */
+  .job-poster-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #e1defe; /* Light grayish-purple */
+  }
+
+  /* Content Wrapper */
+  .job-poster-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns: left for content, right for image */
+    gap: 20px;
+    flex-grow: 1; /* Take up available space */
+    padding: 20px;
+    align-items: flex-start; /* Align content to the top */
+  }
+
+  /* Left Section */
+  .job-poster-content-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Ensure alignment starts at the top */
+    align-items: flex-start; /* Align content to the left */
+    padding: 50px 20px 0; /* Increased top padding to bring it slightly below */
+    margin-top: 0; /* Reset any previous margin adjustments */
+  }
+
+  /* Welcome Message */
+  .job-poster-welcome-message {
+    text-align: left;
+    font-size: 2.5rem;
+    color: #4a0d67; /* Deep purple */
+    margin-bottom: 20px; /* Space below the welcome message */
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+
+  /* Stats Container */
+  .job-poster-stats-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-template-rows: repeat(2, 1fr); /* Two rows */
+    gap: 20px; /* Spacing between boxes */
+    width: 100%;
+  }
+
+  /* Stat Box */
+  .job-poster-stat-box {
+    background-color: #ffffff; /* White */
+    border: 2px solid #4a0d67; /* Deep purple border */
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .job-poster-stat-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .job-poster-stat-box h2 {
+    font-size: 1.4rem;
+    color: #4a0d67;
+    margin-bottom: 10px;
+  }
+
+  .job-poster-stat-box p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2e0854; /* Darker purple */
+  }
+
+  /* Right Side Content (for image) */
+  .job-poster-content-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    /* Removed background color to blend with the page */
+  }
+
+  /* Footer Styling */
+  .job-poster-footer {
+    margin-top: auto;
+    padding: 10px;
+    background-color: #63047857; /* Purple shade */
+    color: #2b0234f6;
+    text-align: center;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* Header Styling */
+  .job-poster-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #63047857; /* Purple shade */
+    color: #2b0234f6;
+  }
+
+  .job-poster-header-logo {
+    height: 50px;
+  }
+
+  .job-poster-header-links {
+    display: flex;
+    gap: 50px;
+    margin-left: 685px; 
+  }
+
+  .job-poster-header-link {
+    color: #2b0234f6;
+    text-decoration: none;
+    font-size: 1.4rem; /* Increased font size */
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .job-poster-header-link:hover {
+    color: white; /* Light purple hover */
+  }
+
+  .header-icons {
+    display: flex;
+    gap: 15px;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .job-poster-content-wrapper {
+      grid-template-columns: 1fr; /* Stack content vertically */
+    }
+
+    .job-poster-content-left {
+      width: 100%;
+    }
+
+    .job-poster-stats-container {
+      grid-template-columns: 1fr; /* Single column */
+    }
+
+    .job-poster-stat-box {
+      width: 100%; /* Stretch to fit container */
+    }
+
+    .job-poster-header-links {
+      gap: 15px;
+      margin-left: 15px; /* Adjust margin for smaller screens */
+    }
+
+    .job-poster-header-logo {
+      height: 40px;
+    }
+  }
+
+  /* Right Section Styling */
+  .job-poster-content-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: transparent; /* Make the container blend with the page */
+    overflow: hidden;
+    padding: 20px; /* Optional spacing */
+  }
+
+  /* Animation Styling */
+  .job-poster-animation {
+    width: 80%;
+    height: auto;
+    max-height: calc(100vh - 160px); /* Adjust height to fit nicely between header and footer */
+    object-fit: cover; /* Ensure the video covers the container smoothly */
+    opacity: 0.85; /* Slight transparency for blending */
+    border-radius: 20px; /* Add rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Optional shadow for a floating effect */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Add smooth transitions */
+  }
+
+  .job-poster-animation:hover {
+    opacity: 1; /* Increase opacity on hover */
+    transform: scale(1.02); /* Slight scaling effect on hover */
+  }
+
+  /* Single Stat Box Container - Increased Size */
+  .job-poster-stats-container-single {
+    display: flex;
+    justify-content: center; /* Center the stat box */
+    width: 100%;
+    /* margin-bottom: 30px; Maintain consistent spacing with the text box */
+  }
+
+  /* Enhanced Stat Box */
+  .job-poster-stat-box {
+    background-color: #ffffff; /* White */
+    border: 2px solid #4a0d67; /* Deep purple border */
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: center;
+    padding: 30px; /* Increased padding for a larger appearance */
+    width: 70%; /* Increased width to fill more space */
+    max-width: 450px; /* Prevent the box from becoming too large */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .job-poster-stat-box:hover {
+    transform: scale(1.02); /* Subtle hover effect */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Slight shadow on hover */
+  }
+
+  .job-poster-stat-box h2 {
+    font-size: 1.8rem; /* Slightly larger heading */
+    color: #4a0d67;
+    margin-bottom: 15px;
+  }
+
+  .job-poster-stat-box p {
+    font-size: 2.5rem; /* Larger font for the stat number */
+    font-weight: bold;
+    color: #2e0854; /* Darker purple */
+  }
+
+  /* Compact Info Box */
+  .job-poster-info-box {
+    background-color: #ffffff; /* White background */
+    border: 2px solid #4a0d67; /* Deep purple border */
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 800px; /* Balanced width for text */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 30px;
+  }
+
+  .job-poster-info-box:hover{
+    transform: scale(1.02); /* Subtle hover effect */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Slight shadow on hover */
+  }
+  /* Info Box Title */
+  .info-box-title {
+    font-size: 1.5rem; /* Compact title size */
+    font-weight: bold;
+    color: #4a0d67; /* Deep purple */
+    margin-bottom: 10px;
+  }
+
+  /* Info Box Text */
+  .info-box-text {
+    font-size: 1.1rem; /* Smaller text for better balance */
+    color: #2e0854; /* Darker purple for readability */
+    line-height: 1.4; /* Compact line spacing */
+    margin-bottom: 10px;
+  }
+
+  /* Info Box Call-to-Action */
+  .info-box-action {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4a0d67; /* Highlighted call-to-action text */
+  }
+
+
+  .language-switcher {
+  display: flex;
+  gap: 10px;
+  margin-right: 60px;
+}
+
+.language-btn {
+  background-color: #ffffff; /* White background */
+  border: 2px solid #4a0d67; /* Purple border */
+  color: #4a0d67; /* Purple text */
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.language-btn:hover {
+  background-color: #4a0d67; /* Purple background */
+  color: #ffffff; /* White text */
+}

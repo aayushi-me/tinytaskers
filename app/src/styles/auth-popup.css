@@ -1,0 +1,112 @@
+/* Popup Styles */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  width: 400px;
+  max-width: 90%;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #6a4c9a; /* Set the default text color to #6a4c9a */
+}
+
+.popup-content h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+}
+
+.popup-content .form-group {
+  margin-bottom: 15px;
+}
+
+.popup-content .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.popup-content .form-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.popup-content .form-group input:focus {
+  border-color: #6a4c9a; /* Updated input focus border color */
+}
+
+.popup-content button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #6a4c9a; /* Button background color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.popup-content button[type="submit"]:hover {
+  background-color: #5a3a8b; /* Darker shade on hover */
+}
+
+/* Close Button */
+.close-btn {
+  background: none;
+  color: #6a4c9a; /* Close button text color */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  opacity: 0.6;
+}
+
+.close-btn:hover {
+  color: #6a4c9a; /* Hover effect */
+  opacity: 1;
+}
+
+/* Plain Text Register and Login Links */
+.register-btn,
+.login-link {
+  all: unset; /* Reset default styles */
+  color: #6a4c9a; /* Updated text color */
+  font-weight: bold;
+  text-decoration: none; /* Remove underline */
+  font-size: 1rem;
+  cursor: pointer; /* Pointer cursor for clickable effect */
+}
+
+.register-btn:hover,
+.login-link:hover {
+  text-decoration: underline; /* Underline on hover */
+  color: #130629; /* Slightly darker blue on hover */
+}
+
+.register-link {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6a4c9a; 
+}
+
+.login-btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

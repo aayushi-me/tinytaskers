@@ -1,0 +1,79 @@
+.job-detail-container {
+    display: grid;
+    grid-template-columns: 3fr 1px 1fr; /* Left column takes three times the space of the right column */
+    gap: 1.5rem; /* Adds spacing between the two columns */
+    padding: 2rem;
+    background-color: #f9f9f9;
+  }
+  
+  .job-detail-left {
+    padding-right: 2rem; /* Add some padding to separate from the divider */
+  }
+  
+  .job-detail-divider {
+    width: 1px;
+    background-color: #ccc;
+  }
+  
+  .job-detail-right {
+    padding-left: 1rem;
+  }
+
+  .button-container {
+    display: flex; /* Align children side by side */
+    gap: 10px; /* Add spacing between the buttons */
+    align-items: center; /* Vertically align buttons */
+    justify-content: flex-start; /* Align buttons to the left */
+    margin-top: 20px;
+    flex-wrap: nowrap; /* Prevent wrapping of buttons to a new line */
+  }
+  
+  
+  
+  .apply-button{
+    height: 40px; /* Ensure consistent height */
+    padding: 8px 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 11px; /* Consistent rounded corners */
+    background-color: #6a4c9a !important; /* Match apply button color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-transform: none; /* Keep button text normal case */
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  
+  .apply-button:hover,
+  .save-button:hover {
+    background-color: #b69ec2; /* Slightly darker shade on hover */
+  }
+
+  .save-button, .share-button{
+    background-color: #6a4c9a !important;
+    height: 40px; /* Ensure consistent height */
+    padding: 8px 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 11px;
+  }
+
+
+  .icon-container {
+    display: flex;
+    gap: 15px; /* Spacing between icons */
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .icon-container .MuiSvgIcon-root {
+    font-size: 2rem; /* Adjust size of icons */
+    color: #6a4c9a; /* Default color */
+    transition: color 0.3s ease;
+  }
+  
+  .icon-container .MuiSvgIcon-root:hover {
+    color: #b091c0; /* Change color on hover */
+  }
+  

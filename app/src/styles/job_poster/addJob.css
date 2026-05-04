@@ -1,0 +1,109 @@
+.add-job-container {
+  margin: 2rem auto; /* Center the container */
+  padding: 1rem; /* Add padding for spacing */
+  max-width: 1200px; /* Set a max width */
+}
+
+.add-job-paper {
+  display: flex;
+  padding: 0; /* Remove default padding */
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+  background-color: #fff; /* Ensure white background */
+  overflow: hidden; /* Prevent content overflow */
+}
+
+.progress-bar-section {
+  background-color: #9b59b6; /* Purple background */
+  padding: 20px;
+  border-radius: 6px 0 0 6px; /* Matches the card's top-left and bottom-left radius */
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  flex: 1; /* Ensures it stretches to fill the card's height */
+  min-height: 100%; /* Forces it to occupy the full height */
+  box-sizing: border-box; /* Includes padding and border in height calculation */
+}
+
+.progress-bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1rem; /* Add spacing between steps */
+}
+
+.progress-bar-title {
+  color: white;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.progress-step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Add spacing between step number and label */
+}
+
+.step-number {
+  width: 28px; /* Increased size for better visibility */
+  height: 28px;
+  border-radius: 50%;
+  background-color: lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+}
+
+.step-number.active {
+  background-color: green;
+  color: #fff;
+}
+
+.step-label {
+  font-size: 16px; /* Increased font size */
+  color: white;
+}
+
+.progress-step.active .step-label {
+  font-weight: bold;
+  color: #fff;
+}
+
+.form-section {
+  background-color: white; /* White background for the form */
+  padding: 20px;
+  flex: 2; /* Allow more space for the form section */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Increased spacing between form elements */
+}
+
+.add-job-form .grid-item {
+  margin-bottom: 1.5rem; /* Adds vertical spacing to each form item */
+}
+
+button {
+  padding: 0.7rem 1rem;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.milestone-textarea {
+  margin-bottom: 1rem; /* Space below each milestone textarea */
+}
+
+.milestone-remove-icon {
+  position: absolute;
+  top: 50%;
+  right: -30px;
+  transform: translateY(-50%);
+}
