@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Registration API",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

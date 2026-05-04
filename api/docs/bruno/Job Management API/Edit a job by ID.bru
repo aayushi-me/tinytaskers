@@ -1,0 +1,38 @@
+meta {
+  name: Edit a job by ID
+  type: http
+  seq: 3
+}
+
+patch {
+  url: http://localhost:3002/listings/jobs/J1
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "Updated Walking Dog",
+    "description": {
+      "About the Job": "Updated job description",
+      "Essential Requirements": "Updated requirements",
+      "Specific Job Responsibilities": "Updated responsibilities",
+      "Qualifications": "Optional updated qualifications"
+    },
+    "category": "Medium",
+    "payment_from": 15,
+    "payment_to": 20,
+    "location": {
+      "street": "Updated Street",
+      "city": "Updated City",
+      "state": "Updated State",
+      "zipCode": "Updated Zip"
+    },
+    "Milestones": {
+      "Milestone 1": "Complete updated training",
+      "Milestone 2": "Submit updated report"
+    },
+    "applyByDate": "2023-12-31T23:59:59"
+  }
+  
+}

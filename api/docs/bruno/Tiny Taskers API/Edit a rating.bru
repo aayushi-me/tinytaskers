@@ -1,0 +1,17 @@
+meta {
+  name: Edit a rating
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://localhost:3002/ratings/6750793298053495b61567df
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "rating": "5"
+  }
+}

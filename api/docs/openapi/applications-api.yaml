@@ -1,0 +1,431 @@
+openapi: 3.0.0
+info:
+  title: Applications API
+  version: 1.0.0
+  description: API for job applications on Tiny Taskers.
+servers:
+  - url: http://localhost:3002
+    description: Local development environment
+paths:
+  /applications:
+    post:
+      summary: Submit a job application
+      requestBody:
+        description: Job application details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Application'
+            example:
+              applicationID: "app123"
+              jobID: "job123"
+              jobName: "Gardening Helper"
+              jobSeekerID: "user123"
+              applicationStatus: "Pending"
+              appliedOn: "2024-10-25"
+      parameters:
+        - in: header
+          name: api-key
+          required: true
+          schema:
+            type: string
+            default: "tiny-secret"
+          description: API key for authentication
+      responses:
+        '201':
+          description: Application submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+              example:
+                applicationID: "app123"
+                jobID: "job123"
+                jobName: "Gardening Helper"
+                jobSeekerID: "user123"
+                applicationStatus: "Pending"
+                appliedOn: "2024-10-25"
+        '400':
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "Invalid application data"
+                code: 400
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "Authentication required"
+                code: 401
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "You do not have permission to submit this application"
+                code: 403
+        '409':
+          description: Duplicate application
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "Application already exists"
+                code: 409
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "Internal server error"
+                code: 500
+
+  /applications/{applicationID}/status:
+    patch:
+      summary: Update job application status
+      description: Approve or deny a job application based on a boolean in the request body.
+      parameters:
+        - in: path
+          name: applicationID
+          required: true
+          schema:
+            type: string
+          description: The ID of the application to update
+        - in: header
+          name: api-key
+          required: true
+          schema:
+            type: string
+            default: "tiny-secret"
+          description: API key for authentication
+      requestBody:
+        description: Specify approval status (true for approve, false for deny)
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                approved:
+                  type: boolean
+                  description: Set to true to approve or false to deny
+            example:
+              approved: true
+      responses:
+        '200':
+          description: Application status updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+              examples:
+                approved:
+                  summary: Application approved
+                  value:
+                    applicationID: "app123"
+                    jobID: "job123"
+                    jobName: "Gardening Helper"
+                    jobSeekerID: "user123"
+                    applicationStatus: "Approved"
+                    appliedOn: "2024-10-25"
+                denied:
+                  summary: Application denied
+                  value:
+                    applicationID: "app123"
+                    jobID: "job123"
+                    jobName: "Gardening Helper"
+                    jobSeekerID: "user123"
+                    applicationStatus: "Denied"
+                    appliedOn: "2024-10-25"
+        '400':
+          description: Invalid input or already at requested status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "Invalid status update"
+                code: 400
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "Authentication required"
+                code: 401
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "You do not have permission to update this application"
+                code: 403
+        '404':
+          description: Application ID not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "Application not found"
+                code: 404
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "Internal server error"
+                code: 500
+
+  /applications/job/{jobName}:
+    get:
+      summary: Get applications by job name
+      description: Retrieve all applications submitted for a specific job name.
+      parameters:
+        - in: path
+          name: jobName
+          required: true
+          schema:
+            type: string
+          description: The name of the job to retrieve applications for
+        - in: header
+          name: api-key
+          required: true
+          schema:
+            type: string
+            default: "tiny-secret"
+          description: API key for authentication
+      responses:
+        '200':
+          description: List of applications for the specified job name
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+              example:
+                - applicationID: "app123"
+                  jobID: "job123"
+                  jobName: "Gardening Helper"
+                  jobSeekerID: "user123"
+                  applicationStatus: "Pending"
+                  appliedOn: "2024-10-25"
+                - applicationID: "app456"
+                  jobID: "job456"
+                  jobName: "Gardening Helper"
+                  jobSeekerID: "user456"
+                  applicationStatus: "Approved"
+                  appliedOn: "2024-10-26"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "Authentication required"
+                code: 401
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "You do not have permission to access these applications"
+                code: 403
+        '404':
+          description: No job or applications found for the given name
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "Job not found"
+                code: 404
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "Internal server error"
+                code: 500
+
+  /applications/all:
+    get:
+      summary: Fetch all job applications
+      description: Retrieve all job applications across all jobs.
+      parameters:
+        - in: header
+          name: api-key
+          required: true
+          schema:
+            type: string
+            default: "tiny-secret"
+          description: API key for authentication
+      responses:
+        '200':
+          description: List of all job applications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+              example:
+                - applicationID: "app123"
+                  jobID: "job123"
+                  jobName: "Gardening Helper"
+                  jobSeekerID: "user123"
+                  applicationStatus: "Pending"
+                  appliedOn: "2024-10-25"
+                - applicationID: "app456"
+                  jobID: "job456"
+                  jobName: "Dog Walker"
+                  jobSeekerID: "user789"
+                  applicationStatus: "Approved"
+                  appliedOn: "2024-10-26"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "Authentication required"
+                code: 401
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "Internal server error"
+                code: 500
+
+  /applications/seeker/{jobSeekerID}:
+    get:
+      summary: Get applications by job seeker ID
+      description: Retrieve all applications submitted by a specific job seeker ID.
+      parameters:
+        - in: path
+          name: jobSeekerID
+          required: true
+          schema:
+            type: string
+          description: The job seeker ID to retrieve applications for
+        - in: header
+          name: api-key
+          required: true
+          schema:
+            type: string
+            default: "tiny-secret"
+          description: API key for authentication
+      responses:
+        '200':
+          description: List of applications for the specified job seeker ID
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+              example:
+                - applicationID: "app123"
+                  jobID: "job123"
+                  jobName: "Gardening Helper"
+                  jobSeekerID: "user123"
+                  applicationStatus: "Pending"
+                  appliedOn: "2024-10-25"
+                - applicationID: "app456"
+                  jobID: "job456"
+                  jobName: "Dog Walker"
+                  jobSeekerID: "user123"
+                  applicationStatus: "Approved"
+                  appliedOn: "2024-10-26"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "Authentication required"
+                code: 401
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "You do not have permission to access these applications"
+                code: 403
+        '404':
+          description: No applications found for the specified job seeker ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "Job seeker ID not found"
+                code: 404
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "Internal server error"
+                code: 500
+
+components:
+  schemas:
+    Application:
+      type: object
+      properties:
+        applicationID:
+          type: string
+        jobID:
+          type: string
+        jobName:
+          type: string
+        jobSeekerID:
+          type: string
+        applicationStatus:
+          type: string
+          enum: ["Pending", "Approved", "Denied"]
+        appliedOn:
+          type: string
+          format: date
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: integer

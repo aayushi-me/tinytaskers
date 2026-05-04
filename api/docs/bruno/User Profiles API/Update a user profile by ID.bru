@@ -1,0 +1,19 @@
+meta {
+  name: Update a user profile by ID
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://localhost:3002/profiles/117
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "location": "Updated Location",
+    "bio": "Updated Bio"
+  }
+  
+}

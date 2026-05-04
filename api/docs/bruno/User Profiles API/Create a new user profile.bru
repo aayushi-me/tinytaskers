@@ -1,0 +1,25 @@
+meta {
+  name: Create a new user profile
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3002/profiles
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "userID": "117",
+    "userType": "job_seeker",
+    "name": "Sumer",
+    "email": "thakur.sum@northeastern.edu",
+    "age": "22",
+    "location": "Boston",
+    "skills": ["web","python"],
+    "bio": "Graduate Student",
+    "companyName": "Northeastern"
+  }
+}
