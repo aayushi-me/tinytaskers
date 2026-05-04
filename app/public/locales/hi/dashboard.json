@@ -1,0 +1,15 @@
+{
+  "welcome_message": "डैशबोर्ड में आपका स्वागत है",
+  "job_listing": "नौकरी सूची",
+  "my_job_applications": "मेरे नौकरी आवेदन",
+  "application_status": "आवेदन स्थिति",
+  "loading_jobs": "नौकरियां लोड हो रही हैं...",
+  "no_title": "कोई शीर्षक उपलब्ध नहीं",
+  "no_description": "कोई विवरण उपलब्ध नहीं",
+  "pay": "वेतन",
+  "per_hour": "/घंटा",
+  "error_message": "नौकरियां लोड करते समय एक त्रुटि हुई।",
+  "view_profile": "प्रोफ़ाइल देखें",
+  "logout": "लॉगआउट",
+  "notifications": "सूचनाएं"
+}

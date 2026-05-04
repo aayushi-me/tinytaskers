@@ -1,0 +1,15 @@
+{
+  "welcome_message": "Welcome to the Dashboard",
+  "job_listing": "Job Listing",
+  "my_job_applications": "My Job Applications",
+  "application_status": "Application Status",
+  "loading_jobs": "Loading jobs...",
+  "no_title": "No Title Available",
+  "no_description": "No Description Available",
+  "pay": "Pay",
+  "per_hour": "/hour",
+  "error_message": "An error occurred while loading jobs.",
+  "view_profile": "View Profile",
+  "logout": "Logout",
+  "notifications": "Notifications"
+}
