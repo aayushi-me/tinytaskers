@@ -1,0 +1,274 @@
+openapi: 3.0.0
+info:
+  title: Tiny Taskers API
+  description: API for managing ratings, reviews, and rewards for job postings and users on Tiny Taskers.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3002
+    description: Local development environment
+paths:
+  /jobs/{jobID}/ratings:
+    post:
+      summary: Submit a rating for a job
+      description: Allows a user to submit a rating for a completed job.
+      parameters:
+        - in: path
+          name: jobID
+          required: true
+          schema:
+            type: string
+          description: ID of the job being rated
+      requestBody:
+        description: Rating details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RatingRequest'
+            example:
+              rating: 4
+              reviewerID: "seeker123"
+              reviewerRole: "Job Seeker"
+      responses:
+        '201':
+          description: Rating successfully submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RatingResponse'
+        '400':
+          description: Invalid rating data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 400
+                message: "Invalid rating value. Must be between 1 and 5."
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 404
+                message: "Job not found."
+        '409':
+          description: Rating already exists for this job and reviewer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 409
+                message: "Rating already exists for this job and reviewer."
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 500
+                message: "Internal server error."
+
+    get:
+      summary: Retrieve all ratings for a job
+      description: Retrieves all ratings for a specific job posting.
+      parameters:
+        - in: path
+          name: jobID
+          required: true
+          schema:
+            type: string
+          description: ID of the job whose ratings are to be retrieved
+      responses:
+        '200':
+          description: List of ratings for the job
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RatingResponse'
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 404
+                message: "Job not found."
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 500
+                message: "Internal server error."
+
+  /ratings/{ratingID}:
+    put:
+      summary: Edit a rating
+      description: Edit an existing rating for a job.
+      parameters:
+        - in: path
+          name: ratingID
+          required: true
+          schema:
+            type: string
+          description: ID of the rating to be edited
+      requestBody:
+        description: Updated rating data
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rating:
+                  type: integer
+                  description: Updated rating value (1-5)
+            example:
+              rating: 5
+      responses:
+        '200':
+          description: Rating successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RatingResponse'
+        '400':
+          description: Invalid rating data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 400
+                message: "Invalid rating value."
+        '403':
+          description: Forbidden - user is not authorized to edit this rating
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 403
+                message: "Forbidden - user is not authorized to edit this rating."
+        '404':
+          description: Rating not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 404
+                message: "Rating not found."
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 500
+                message: "Internal server error."
+
+  /users/{userID}/rewards:
+    get:
+      summary: Retrieve user's reward points and achievements
+      description: Retrieves the current reward points, badges, and milestones for a user.
+      parameters:
+        - in: path
+          name: userID
+          required: true
+          schema:
+            type: string
+          description: ID of the user whose rewards are being retrieved
+      responses:
+        '200':
+          description: User's reward data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RewardResponse'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 404
+                message: "User not found."
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 500
+                message: "Internal server error."
+
+components:
+  schemas:
+    RatingRequest:
+      type: object
+      properties:
+        rating:
+          type: integer
+          description: Rating value (1-5)
+        reviewerID:
+          type: string
+          description: ID of the reviewer
+        reviewerRole:
+          type: string
+          enum: [Job Seeker, Job Poster]
+          description: Role of the reviewer
+
+    RatingResponse:
+      type: object
+      properties:
+        ratingID:
+          type: string
+          description: Unique ID of the rating
+        jobID:
+          type: string
+          description: ID of the rated job
+        rating:
+          type: integer
+          description: Rating value
+        reviewerID:
+          type: string
+          description: ID of the reviewer
+        reviewerRole:
+          type: string
+          description: Role of the reviewer (Job Seeker or Job Poster)
+
+    RewardResponse:
+      type: object
+      properties:
+        points:
+          type: integer
+          description: Total reward points the user has
+        badges:
+          type: array
+          items:
+            type: string
+          description: List of badges the user has earned
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        message:
+          type: string
+          description: Error message describing the issue

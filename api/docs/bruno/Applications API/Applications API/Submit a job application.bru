@@ -1,0 +1,27 @@
+meta {
+  name: Submit a job application
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3002/applications
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTBjNmJkMjg2MmE0NmQwYzQyODdkNSIsInJvbGUiOiJKb2JTZWVrZXIiLCJpYXQiOjE3MzMzNDcwMjEsImV4cCI6MTczMzM1MDYyMX0.LoxDccYw4VyAlrKBVAqRmcCouKHdHMWjwT_f5OD6UuI
+}
+
+body:json {
+  {
+    "applicationID": "123",
+    "jobID": "456",
+    "jobName": "walking dog",
+    "jobSeekerID": "454",
+    "applicationStatus": "Pending",
+    "appliedOn": "02-03-2024"
+  }
+  
+}

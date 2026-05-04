@@ -1,0 +1,20 @@
+meta {
+  name: Create user-reward
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:3002/rewards/jobs/1/rewards
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "rewarderID": "poster12456",
+      "rewarderRole": "Job Poster",
+      "content": "Bonus for excellent work"
+  }
+  
+}

@@ -1,0 +1,38 @@
+meta {
+  name: Create a new job posting
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3002/listings
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "posterID": "P6",
+    "title": "Dog Walking and Pet Care",
+    "description": {
+      "About the Job": "Walk dogs and provide basic pet care",
+      "Essential Requirements": "Love for animals and responsible nature",
+      "Specific Job Responsibilities": "Daily walks, feeding, and basic pet monitoring",
+      "Qualifications": "Previous pet care experience preferred"
+    },
+    "category": "Animal Care",
+    "payment_from": 15,
+    "payment_to": 20,
+    "location": {
+      "street": "890 Pet Paradise Road",
+      "city": "Chicago",
+      "state": "Illinois",
+      "zipCode": "60601"
+    },
+    "Milestones": {
+      "Milestone 1": "Initial pet meet and greet",
+      "Milestone 2": "Consistent care and positive feedback"
+    },
+    "applyByDate": "2024-01-25T23:59:59"
+  }
+}

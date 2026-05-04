@@ -1,0 +1,257 @@
+openapi: 3.0.0
+info:
+  title: User Profiles API
+  description: API for creating, retrieving, updating, and deleting user profiles for job seekers and job posters on Tiny Taskers.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3002
+    description: Local development environment
+paths:
+  /profiles:
+    post:
+      summary: Create a new user profile
+      description: Allows a new user (job seeker or job poster) to create a profile.
+      requestBody:
+        description: User profile details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserProfile"
+            examples:
+              jobSeeker:
+                summary: Job Seeker Profile Example
+                value:
+                  userID: "seeker1234"
+                  userType: "job_seeker"
+                  name: "John Doe"
+                  email: "johndoe@example.com"
+                  age: 20
+                  location: "Springfield, IL"
+                  skills: ["dog walking", "gardening"]
+                  bio: "Responsible student seeking part-time work."
+              jobPoster:
+                summary: Job Poster Profile Example
+                value:
+                  userID: "poster123"
+                  userType: "job_poster"
+                  name: "Jane Smith"
+                  email: "janesmith@example.com"
+                  companyName: "Green Gardens"
+                  location: "Springfield, IL"
+                  bio: "Small business owner looking for reliable help."
+      responses:
+        "201":
+          description: User profile created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfile"
+        "400":
+          description: Invalid user profile data provided
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: "Invalid user data. Please check the required fields."
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: "An unexpected error occurred. Please try again later."
+
+  /profiles/{userID}:
+    get:
+      summary: Retrieve a user profile by ID
+      description: Fetches details of a user profile by ID, including specific fields for job seekers and job posters.
+      parameters:
+        - in: path
+          name: userID
+          required: true
+          schema:
+            type: string
+          description: ID of the user profile to retrieve
+      responses:
+        "200":
+          description: User profile retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfile"
+        "404":
+          description: User profile not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: "User profile with specified ID not found."
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: "An unexpected error occurred. Please try again later."
+
+    put:
+      summary: Update a user profile by ID
+      description: Allows a user to update their profile information, such as location, skills, or bio.
+      parameters:
+        - in: path
+          name: userID
+          required: true
+          schema:
+            type: string
+          description: ID of the user profile to update
+      requestBody:
+        description: Updated profile details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserProfileUpdate"
+            examples:
+              jobSeekerUpdate:
+                summary: Job Seeker Profile Update Example
+                value:
+                  location: "New York, NY"
+                  skills: ["babysitting", "gardening"]
+                  bio: "Updated bio for job seeker."
+              jobPosterUpdate:
+                summary: Job Poster Profile Update Example
+                value:
+                  location: "San Francisco, CA"
+                  bio: "Updated bio for job poster."
+      responses:
+        "200":
+          description: User profile updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfile"
+        "400":
+          description: Invalid profile update data provided
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: "Invalid update data. Please verify fields."
+        "404":
+          description: User profile not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: "User profile with specified ID not found."
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: "An unexpected error occurred. Please try again later."
+
+    delete:
+      summary: Delete a user profile by ID
+      description: Allows a user to delete their profile from the system.
+      parameters:
+        - in: path
+          name: userID
+          required: true
+          schema:
+            type: string
+          description: ID of the user profile to delete
+      responses:
+        "204":
+          description: User profile deleted successfully
+        "404":
+          description: User profile not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: "User profile with specified ID not found."
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: "An unexpected error occurred. Please try again later."
+
+components:
+  schemas:
+    UserProfile:
+      type: object
+      properties:
+        userID:
+          type: string
+          description: Unique identifier for the user.
+        userType:
+          type: string
+          description: "Type of user (job_seeker or job_poster)"
+          enum: ["job_seeker", "job_poster"]
+        name:
+          type: string
+          description: Name of the user.
+        email:
+          type: string
+          description: Email address of the user.
+        age:
+          type: integer
+          description: "Applicable only for job seekers"
+        location:
+          type: string
+          description: Location of the user.
+        skills:
+          type: array
+          items:
+            type: string
+          description: "Skills of the user, applicable only for job seekers"
+        bio:
+          type: string
+          description: "A brief bio about the user."
+        companyName:
+          type: string
+          description: "Company name, applicable only for job posters"
+      required:
+        - userID
+        - userType
+        - name
+        - email
+
+    UserProfileUpdate:
+      type: object
+      properties:
+        location:
+          type: string
+          description: "Updated location of the user."
+        skills:
+          type: array
+          items:
+            type: string
+          description: "Updated skills of the user, applicable only for job seekers."
+        bio:
+          type: string
+          description: "Updated bio for the user."
+        companyName:
+          type: string
+          description: "Updated company name, applicable only for job posters."
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Description of the error.

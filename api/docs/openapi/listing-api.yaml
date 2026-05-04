@@ -1,0 +1,301 @@
+openapi: 3.0.0
+info:
+  title: Job Management API
+  description: API for creating, editing, searching, and deleting job postings on Tiny Taskers.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3002
+    description: Local development environment
+paths:
+  /jobs:
+    post:
+      summary: Create a new job posting
+      description: Allows a job poster to create a new job posting that job seekers can apply for.
+      requestBody:
+        description: Job posting details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Job'
+            example:
+              jobID: "job123"
+              posterID: "poster123"
+              title: "Dog Walking"
+              description: "Walk a dog for 30 minutes daily."
+              category: "Pet Care"
+              payment: 15
+              location:
+                street: "123 Main St"
+                city: "Springfield"
+                state: "IL"
+                zipCode: "62701"
+      responses:
+        '201':
+          description: Job posting created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+              example:
+                jobID: "job123"
+                posterID: "poster123"
+                title: "Dog Walking"
+                description: "Walk a dog for 30 minutes daily."
+                category: "Pet Care"
+                payment: 15
+                location:
+                  street: "123 Main St"
+                  city: "Springfield"
+                  state: "IL"
+                  zipCode: "62701"
+        '400':
+          description: Invalid job data provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid job data provided. Please ensure all required fields are filled."
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "An unexpected error occurred. Please try again later."
+
+  /jobs/{jobID}:
+    get:
+      summary: Search a job by ID
+      description: Retrieves a specific job posting by its unique ID.
+      parameters:
+        - in: path
+          name: jobID
+          required: true
+          schema:
+            type: string
+          description: The unique identifier of the job to retrieve.
+      responses:
+        '200':
+          description: Job found successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+              example:
+                jobID: "job123"
+                posterID: "poster123"
+                title: "Dog Walking"
+                description: "Walk a dog for 30 minutes daily."
+                category: "Pet Care"
+                payment: 15
+                location:
+                  street: "123 Main St"
+                  city: "Springfield"
+                  state: "IL"
+                  zipCode: "62701"
+        '400':
+          description: Invalid job ID provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid job ID. Please provide a valid ID."
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Job not found. The job with the given ID does not exist."
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "An unexpected error occurred. Please try again later."
+
+    patch:
+      summary: Edit a job by ID
+      description: Allows a job poster to edit an existing job posting.
+      parameters:
+        - in: path
+          name: jobID
+          required: true
+          schema:
+            type: string
+          description: The unique identifier of the job to edit.
+      requestBody:
+        description: Updated job details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Job'
+            example:
+              jobID: "job123"
+              posterID: "poster123"
+              title: "Dog Walking - Updated"
+              description: "Walk a dog for 1 hour daily."
+              category: "Pet Care"
+              payment: 25
+              location:
+                street: "123 Main St"
+                city: "Springfield"
+                state: "IL"
+                zipCode: "62701"
+      responses:
+        '200':
+          description: Job updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+              example:
+                jobID: "job123"
+                posterID: "poster123"
+                title: "Dog Walking - Updated"
+                description: "Walk a dog for 1 hour daily."
+                category: "Pet Care"
+                payment: 25
+                location:
+                  street: "123 Main St"
+                  city: "Springfield"
+                  state: "IL"
+                  zipCode: "62701"
+        '400':
+          description: Invalid job data provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid job data provided. Please ensure all required fields are filled."
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Job not found. The job with the given ID does not exist."
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "An unexpected error occurred. Please try again later."
+
+    delete:
+      summary: Delete a job by ID
+      description: Allows a job poster to delete an existing job posting by its unique ID.
+      parameters:
+        - in: path
+          name: jobID
+          required: true
+          schema:
+            type: string
+          description: The unique identifier of the job to delete.
+      responses:
+        '200':
+          description: Job deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Job deleted successfully."
+        '400':
+          description: Invalid job ID provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid job ID. Please provide a valid ID."
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Job not found. The job with the given ID does not exist."
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "An unexpected error occurred. Please try again later."
+
+components:
+  schemas:
+    Job:
+      type: object
+      properties:
+        jobID:
+          type: string
+          description: Unique identifier for the job.
+        posterID:
+          type: string
+          description: ID of the job poster.
+        title:
+          type: string
+          description: Title of the job.
+        description:
+          type: string
+          description: Detailed description of the job.
+        category:
+          type: string
+          description: Category of the job.
+        payment:
+          type: number
+          description: Payment offered for the job.
+        location:
+          $ref: '#/components/schemas/Address'
+
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipCode:
+          type: string

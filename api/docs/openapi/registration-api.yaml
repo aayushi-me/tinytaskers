@@ -1,0 +1,170 @@
+openapi: 3.0.0
+info:
+  title: Registration API
+  version: 1.0.0
+  description: API for User and Admin Registration
+servers:
+  - url: http://localhost:3002/auth
+    description: Local development server
+
+paths:
+  /register/user:
+    post:
+      summary: User registration
+      description: Allows a user to register by providing necessary details.
+      requestBody:
+        description: User registration details
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: user@example.com
+                password:
+                  type: string
+                  format: password
+                  example: "userpassword"
+                fullName:
+                  type: string
+                  example: "John Doe"
+                dob:
+                  type: string
+                  format: date
+                  example: "1990-01-01"
+                role:
+                  type: string
+                  enum: [user]
+                  default: user
+                  example: user
+      responses:
+        '201':
+          description: User registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "User registered successfully"
+                  userId:
+                    type: string
+                    example: "1234567890abcdef"
+        '400':
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Invalid registration data"
+        '409':
+          description: Email already in use
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Email is already registered"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Internal server error"
+
+  /register/admin:
+    post:
+      summary: Admin registration
+      description: Allows an admin to register by providing necessary details.
+      requestBody:
+        description: Admin registration details
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: admin@example.com
+                username:
+                  type: string
+                  example: admin
+                password:
+                  type: string
+                  format: password
+                  example: "adminpassword"
+                dob:
+                  type: string
+                  format: date
+                  example: "1985-12-25"
+                role:
+                  type: string
+                  enum: [admin]
+                  example: admin
+      responses:
+        '201':
+          description: Admin registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Admin registered successfully"
+                  adminId:
+                    type: string
+                    example: "9876543210abcdef"
+        '400':
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Invalid registration data"
+        '409':
+          description: Email or username already in use
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Email or username is already registered"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Internal server error"
+
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
