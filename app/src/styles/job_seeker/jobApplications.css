@@ -1,0 +1,184 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Full-screen layout setup */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Prevent unnecessary scrollbars on the body */
+}
+
+/* Dashboard container layout */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full height of the viewport */
+  overflow: hidden; /* Prevent scrolling on the container */
+}
+
+/* Fixed header with shadow */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px; /* Header height */
+  background: white;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Fixed footer with shadow */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: white;
+  z-index: 1000;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Content area with scrollable space between header and footer */
+.dashboard-content {
+  flex: 1;
+  margin-top: 70px;
+  margin-bottom: 60px;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+/* Section title styling */
+.job-section-title {
+  font-size: 2.8rem;
+  color: #130629;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #130629;
+  padding-bottom: 8px;
+}
+
+/* Message when no applications are available */
+.no-applications-message {
+  font-size: 1.2rem;
+  color: #6c757d;
+}
+
+/* Responsive grid for job cards */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+  width: 100%;
+  justify-items: center;
+}
+
+/* Individual job card styling */
+.job-card {
+  background: #ffffff;
+  border: 1px solid #e6e9f2;
+  border-radius: 12px;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 320px;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Job title inside the card */
+.job-title {
+  font-size: 1.6rem;
+  color: #6a4c9a;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 600;
+  border-bottom: 2px solid #6a4c9a;
+  padding-bottom: 5px;
+}
+
+/* General text styling for job details and comments */
+.job-detail {
+  font-size: 1rem;
+  color: #495057;
+}
+
+.job-comment {
+  font-size: 0.95rem;
+  color: #6c757d;
+}
+
+/* Badge for application status */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* Status-specific badge styles */
+.status-pending {
+  background-color: #ffefd5;
+  color: #856404;
+}
+
+.status-approved {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-denied {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+  .job-section-title {
+    font-size: 2.2rem;
+  }
+
+  .job-title {
+    font-size: 1.4rem;
+  }
+
+  .job-detail {
+    font-size: 0.95rem;
+  }
+
+  .job-comment {
+    font-size: 0.9rem;
+  }
+}
+
+/* Share button styling */
+.share-btn {
+  padding: 8px 20px;
+  background-color: #6a4c9a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+}
+
+.share-btn:hover {
+  background-color: #130629;
+}

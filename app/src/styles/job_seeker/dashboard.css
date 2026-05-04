@@ -1,0 +1,202 @@
+/* General styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container for the entire dashboard */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f3eafc; /* Light grayish-purple background */
+  position: relative; /* For positioning the slideshow */
+}
+
+/* Slideshow container */
+.slideshow-container {
+  overflow: hidden; /* Hide overflowing content */
+  width: 50%; /* Set width to 50% of the screen */
+  height: 70vh; /* Adjusted height to make it proportional */
+  position: absolute; /* Place it on the page */
+  top: 50%; /* Vertically center it relative to the page */
+  left: 0; /* Start from the left */
+  transform: translateY(-50%); /* Adjust for perfect vertical centering */
+  background-color: transparent; /* Transparent background for the container */
+  display: flex;
+  flex-direction: column; /* Vertical layout */
+  justify-content: center; /* Center items vertically */
+  align-items: center; /* Center items horizontally */
+}
+
+/* Right Section for Animation */
+.dashboard-right-section {
+  position: absolute;
+  right: 0; /* Align the container to the right */
+  width: 50vw; /* Occupy 50% of the viewport width */
+  height: 70vh; /* Adjusted height to match slideshow */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+/* Animation video container */
+.dashboard-right-section video {
+  width: 95%; /* Slight padding within the container */
+  height: 70vh; /* Adjust to maintain aspect ratio */
+  border-radius: 20px; /* Rounded corners */
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  object-fit: cover; /* Ensure the video covers the container area */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  margin-top: -70px; /* Move the video slightly upward */
+}
+
+.dashboard-right-section video:hover {
+  transform: scale(1.02); /* Slight scaling effect */
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+/* Slideshow wrapper */
+.slideshow {
+  display: grid; /* Use grid for two-column layout */
+  grid-template-columns: 1fr 1fr; /* Two columns of equal width */
+  animation: scroll-vertical 20s linear infinite; /* Smooth vertical scrolling animation */
+  gap: 20px; /* Add spacing between cards */
+  padding-left: 20px; /* Added left padding to prevent overlap with the container edge */
+  height: calc(150px * 12 + 200px); /* Adjust height based on total cards and gaps */
+  align-items: center; /* Vertically center the cards in each row */
+}
+
+/* Duplicate the slideshow content for seamless looping */
+.slideshow > * {
+  flex-shrink: 0;
+}
+
+/* Individual job card styling */
+.job_card {
+  position: relative; /* Needed for the pseudo-element positioning */
+  width: 90%; /* Adjust card width to fit within the grid columns */
+  height: 150px; /* Fixed height for consistency */
+  background-color: #f5f5f5; /* Light gray background */
+  border-radius: 25px; /* Increased border-radius for more prominent rounded corners */
+  text-align: center;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); /* Subtle 3D emerging effect */
+  z-index: 1; /* Ensure the card content stays above the pseudo-element */
+  overflow: visible; /* Allow the pseudo-element to extend outside the card */
+  border: 2px solid #4a0d67; /* Add a subtle border for the job box */
+  margin-left: 10px; /* Added margin to the left of each job card */
+}
+
+.job_card::before {
+  content: "";
+  position: absolute;
+  top: 50%; /* Center the shape vertically */
+  left: 50%; /* Center the shape horizontally */
+  width: 300px; /* Width of the shape */
+  height: 250px; /* Height of the shape */
+  background: radial-gradient(circle at 50% 50%, rgba(128, 0, 128, 0.3), rgba(128, 0, 128, 0)); /* Purple gradient */
+  border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%; /* Irregular elliptical shape */
+  transform: translate(-50%, -50%) scale(0); /* Center and hide the shape initially */
+  z-index: 0; /* Ensure it stays behind the card */
+  transition: transform 0.5s ease, opacity 0.5s ease; /* Smooth scaling effect */
+}
+
+.job_card:hover::before {
+  transform: translate(-50%, -50%) scale(1); /* Scale up the shape on hover */
+  opacity: 1; /* Ensure it's fully visible */
+}
+
+.job_card:hover {
+  transform: scale(1.05); /* Slightly enlarge card on hover */
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.3); /* Enhanced shadow for 3D effect on hover */
+  background-color: #ececec; /* Slightly darker gray when hovered */
+}
+
+.job_card h6 {
+  font-size: 1.2rem;
+  color: #3e024baf;
+  margin-bottom: 5px;
+}
+
+.job_card p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Smooth Scrolling Animation (Vertical) */
+@keyframes scroll-vertical {
+  0% {
+    transform: translateY(0); /* Start at the first set */
+  }
+  100% {
+    transform: translateY(-50%); /* Move to the duplicate set */
+  }
+}
+
+/* Loading container styles */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.loading-container p {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Error container styles */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: red;
+  text-align: center;
+}
+
+/* Video background styles */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the video covers the entire viewport */
+  z-index: -1; /* Ensures the video stays behind other content */
+  opacity: 0.8; /* Optional: Adjust opacity for better readability */
+}
+
+/* Ensure dashboard content is layered above the video */
+.dashboard-container {
+  position: relative;
+  z-index: 1; /* Content stays above the video */
+  color: white; /* Ensure text is readable */
+}
+
+/* Header and Footer styles */
+.header,
+.footer {
+  width: 100%; /* Full width for header and footer */
+  background-color: rgba(99, 4, 120, 0.9); /* Purple background similar to the header */
+}
+

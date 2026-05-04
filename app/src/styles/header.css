@@ -1,0 +1,107 @@
+/* Header styles */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Spread the content evenly */
+  background-color: #63047857;
+  padding: 0 20px;
+  height: 70px; /* Header height */
+  position: sticky; /* Sticky position */
+  top: 0; /* Stick to the top of the page */
+  z-index: 1000; /* Ensure it's above other elements */
+}
+
+/* Left section: Logo */
+.header-brand {
+  display: flex;
+  align-items: center;
+  flex: 1; /* Take equal space */
+  justify-content: flex-start; /* Align logo to the left */
+}
+
+.header-logo {
+  height: 70px; /* Logo size */
+  width: auto; /* Maintain aspect ratio */
+  cursor: pointer;
+}
+
+/* Middle section: Navigation Links */
+.header-links {
+  display: flex;
+  justify-content: flex-end; /* Align links to the right */
+  align-items: center;
+  gap: 50px; /* Reduce spacing between links to prevent wrapping */
+  margin-left: 400px; /* Adjust margin for better alignment */
+  flex: 3; /* Increase space allocation for links */
+}
+
+.header-link {
+  font-size: 1.4rem; /* Slightly larger font size for better visibility */
+  font-weight: 600; /* Semi-bold for emphasis */
+  color: #2b0234f6; /* Footer-like color */
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.header-link:hover {
+  color: #ffffff; /* Change to white on hover */
+}
+
+/* Right section: Notification and User */
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between notification and user profile icons */
+  flex: 1; /* Take equal space */
+  justify-content: flex-end; /* Align icons to the right */
+}
+
+
+/* Language Switcher */
+ .language-switcher {
+  display: flex;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+ .language-switcher button {
+  background-color: #4a0d67;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+ .language-switcher button:hover {
+  background-color: #630478;
+  transform: scale(1.05);
+}
+
+ .language-switcher button:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Profile Icon in Header */
+.user-profile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #4a0d67; /* Purple color for the icon */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.user-profile-icon:hover {
+  background-color: #4a0d67; /* Purple background on hover */
+  color: #ffffff; /* White icon color on hover */
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}

@@ -1,0 +1,155 @@
+/* Styles for the ApplicantList container */
+.applicant-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the cards horizontally */
+  gap: 1rem;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+/* Card container for each applicant */
+.applicant-card {
+  width: 80%; /* Set width to 80% of the screen */
+  max-width: 1200px; /* Optional: Set a maximum width */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex; /* Flexbox for layout */
+  justify-content: space-between; /* Space between content and buttons */
+  align-items: center; /* Align content vertically */
+}
+
+/* Applicant details on the left */
+.applicant-details {
+  flex: 3; /* Occupy more space for the details */
+}
+
+/* Action buttons on the right */
+.applicant-actions {
+  flex: 1; /* Occupy less space for buttons */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Align buttons to the right */
+  gap: 0.5rem; /* Add space between buttons */
+}
+
+.applicant-actions button {
+  width: 100px; /* Set a fixed width for buttons */
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.applicant-actions .approve-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.applicant-actions .deny-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Applicant details */
+.applicant-card-details {
+  flex: 2; /* Take more space on the left */
+}
+
+.applicant-card-details p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Applicant name */
+.applicant-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* Action buttons */
+.applicant-card-actions {
+  flex: 1; /* Smaller space for buttons */
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 0.5rem; /* Space between buttons */
+  align-items: flex-end; /* Align buttons to the right */
+}
+
+.applicant-card-actions button {
+  padding: 0.7rem 1.5rem; /* Adjust padding for size */
+  font-size: 16px; /* Font size */
+  border-radius: 4px; /* Rounded corners */
+  border: none; /* No border for default buttons */
+  cursor: pointer; /* Pointer cursor */
+  transition: all 0.3s ease; /* Smooth hover and color transition */
+}
+
+/* Approve button styling (like Apply button) */
+.applicant-card-actions .approve-button {
+  background-color: #c8abd1; /* Purple background */
+  color: white; /* White text */
+  border: none; /* No border */
+}
+
+.applicant-card-actions .approve-button:hover {
+  background-color: #4a148c; /* Darker purple on hover */
+  color: white; /* Keep text white */
+}
+
+/* Deny button styling (like Details button) */
+.applicant-card-actions .deny-button {
+  background-color: transparent; /* Transparent background */
+  color: #c8abd1; /* Purple text */
+  border: 2px solid #c8abd1; /* Purple border */
+}
+
+.applicant-card-actions .deny-button:hover {
+  background-color: #f3e5f5; /* Light purple background on hover */
+  color: #4a148c; /* Darker purple text on hover */
+}
+
+
+.approve-button,
+.deny-button {
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.approve-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.deny-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.approve-button:hover,
+.deny-button:hover {
+  opacity: 0.9;
+}
+
+/* More info section */
+.applicant-card-details details {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.applicant-card-details details summary {
+  cursor: pointer;
+  font-weight: bold;
+}

@@ -1,0 +1,142 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Prevent body scrolling */
+}
+
+/* Main Application Container */
+.job-application-container {
+  position: relative;
+  margin: 0 auto; /* Center horizontally */
+  height: calc(100vh - 130px); /* Header (70px) + Footer (60px) */
+  padding: 20px;
+  overflow-y: scroll; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Disable horizontal scrolling */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+  width: calc(100% - 40px); /* Full width with padding adjustment */
+  box-sizing: border-box; /* Ensure padding is included in the width */
+  background-color: #f9f9f9; /* Add subtle background for clarity */
+}
+
+/* Fixed Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: white;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Fixed Footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: white;
+  z-index: 1000;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Styling */
+.section {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #333;
+}
+
+/* Job Details Grid */
+.job-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.job-details-grid p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Form Styling */
+.application-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  padding: 10px 15px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #6a4c9a;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #130629;
+}
+
+.form-group.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-group.checkbox input {
+  margin: 0;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .job-details-grid {
+    grid-template-columns: 1fr; /* Stack for small screens */
+  }
+
+  .job-application-container {
+    padding: 15px; /* Adjust for smaller devices */
+  }
+}

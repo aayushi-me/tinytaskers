@@ -1,0 +1,271 @@
+/* Base Styles */
+body {
+  margin: 0;
+  font-family: "Roboto", Arial, sans-serif;
+  background-color: #f4f5f7;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden; /* Prevent double scrollbars */
+}
+
+/* Main Profile Page Layout */
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Header and Footer */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: white;
+  height: 70px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: white;
+  height: 60px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Content Area */
+.content-container {
+  margin-top: 70px; /* Offset for fixed header */
+  margin-bottom: 60px; /* Offset for fixed footer */
+  overflow-y: auto;
+  flex: 1;
+  padding: 20px;
+}
+
+/* Profile Container */
+.profile-container {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Profile Header Section */
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #1e3a8a, #6366f1);
+  color: white;
+  border-radius: 15px;
+  padding: 30px 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 5px;
+}
+
+.profile-header-content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.profile-avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-avatar {
+  border: 4px solid white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+}
+
+.profile-name {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+/* Button Styles */
+.upload-button {
+  border: 1px solid white;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  background: transparent;
+  font-size: 0.9rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+.upload-button:hover {
+  background: white;
+  color: #6366f1;
+}
+
+.edit-button {
+  background: #63a9e2;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+.edit-button:hover {
+  background: #16a34a;
+}
+
+/* Profile Summary Section */
+.profile-summary-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-summary-container h6 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.profile-summary-container p {
+  font-size: 1rem;
+  color: black;
+  line-height: 1.5;
+}
+
+/* Profile Card Styles */
+.profile-card {
+  padding: 25px;
+  border-radius: 15px;
+  background: white;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.profile-card h6 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.profile-card .MuiTextField-root {
+  margin-bottom: 20px;
+}
+
+.profile-card p {
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+/* Input Fields */
+.MuiTextField-root {
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #6366f1;
+  outline: none;
+  box-shadow: 0 0 5px rgba(99, 102, 241, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-header-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-container {
+    padding: 10px;
+  }
+
+  .profile-card {
+    padding: 20px;
+  }
+
+  .profile-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+/* Style for the outlined buttons */
+.profile-actions .MuiButton-outlined {
+  border-color: #6a4c9a;
+  color: #6a4c9a;
+}
+
+.profile-actions .MuiButton-outlined:hover {
+  border-color: #130629;
+  background-color: #130629;
+  color: white;
+}
+
+/* Style for the contained buttons */
+.profile-actions .MuiButton-contained {
+  background-color: #6a4c9a;
+  color: white;
+}
+
+.profile-actions .MuiButton-contained:hover {
+  background-color: #130629;
+}
+
+/* Style for the Delete Account button */
+.profile-actions .MuiButton-contained.error {
+  background-color: #6a4c9a;
+  color: white;
+}
+
+.profile-actions .MuiButton-contained.error:hover {
+  background-color: #130629;
+}
+

@@ -1,0 +1,18 @@
+/* Styles for the ApplicantList container */
+.applicant-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  
+  /* Loading and error states specific to ApplicantList */
+  .applicant-list-loading-container,
+  .applicant-list-error-container {
+    text-align: center;
+    margin-top: 2rem;
+    color: #555;
+    font-size: 1.2rem;
+  }
+  

@@ -1,0 +1,44 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Ensure it takes full height */
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  box-sizing: border-box; /* Include padding/border in width/height */
+}
+
+
+.dashboard-container {
+  display: flex;
+  color: black;
+}
+
+  
+.dashboard-content {
+  display: block !important;
+  flex: 1;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+}
+
+.dashboard-content::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, Edge */
+}
+
+  
+  .footer {
+    position: sticky; /* Ensure footer sticks at the bottom */
+  }
+  
+  /* Shared Button Style */
+  button {
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }
+  

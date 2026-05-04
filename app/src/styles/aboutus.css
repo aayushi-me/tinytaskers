@@ -1,0 +1,227 @@
+/* General About Us Page Styles */
+.aboutus-page {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #ffffff;
+  color: #0f67b1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; /* Stack header and content vertically */
+}
+
+/* Header */
+.aboutus-page .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Vertically align items */
+  background-color: rgba(209, 211, 212, 0.9);
+  height: 90px;
+  padding: 0 20px; /* Adjusted padding */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo Container */
+.aboutus-page .logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align logo to the left */
+  flex: 1;
+}
+
+.aboutus-page .brand-logo {
+  height: 50px;
+  width: auto;
+}
+
+/* Navigation Links */
+.aboutus-page .nav-links {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end; /* Align navigation links to the center */
+  align-items: center; /* Align items vertically */
+  flex: 2;
+}
+
+.aboutus-page .nav-links a {
+  text-decoration: none;
+  background: none;
+  border: none;
+  color: #6a4c9a;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px;
+  transition: color 0.3s ease;
+}
+
+.aboutus-page .nav-links a:hover {
+  color: #341f57;
+}
+
+/* Language Switcher */
+.aboutus-page .language-switcher {
+  display: flex;
+  gap: 10px;
+  align-items: center; /* Vertically align buttons */
+  justify-content: flex-end;
+  flex: 1; /* Shrink to fit the buttons */
+}
+
+.aboutus-page .language-switcher button {
+  font-size: 1rem;
+  color: #6a4c9a;
+  background: none;
+  border: 2px solid #6a4c9a;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.aboutus-page .language-switcher button:hover {
+  background-color: #6a4c9a;
+  color: #ffffff;
+}
+
+/* Fix Alignment and Prevent Overlapping */
+.aboutus-page .header > * {
+  display: flex;
+  align-items: center;
+  flex: 1; /* Equal spacing for all items */
+}
+
+.aboutus-page .nav-links {
+  justify-content: center; /* Align navigation links to the center */
+}
+
+/* About Us Content Section */
+.aboutus-page .aboutus-content {
+  flex: 1; /* Allow content to grow and fill available space */
+  padding: 50px 30px; /* Add padding for readability */
+  text-align: left; /* Align text to the left */
+  line-height: 1.8;
+}
+
+/* Headings */
+.aboutus-page .aboutus-content h1 {
+  font-size: 3rem;
+  color: #0f67b1;
+  margin-bottom: 30px;
+  text-align: center; /* Center-align the main heading */
+}
+
+.aboutus-page .aboutus-content h2 {
+  font-size: 2rem;
+  color: #6a4c9a;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+/* Paragraphs */
+.aboutus-page .aboutus-content p {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Lists */
+.aboutus-page .aboutus-content ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.aboutus-page .aboutus-content ul li {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  padding-left: 25px;
+  position: relative;
+}
+
+.aboutus-page .aboutus-content ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #6a4c9a;
+  font-size: 1.5rem;
+}
+
+/* Links */
+.aboutus-page .aboutus-content a {
+  color: #0f67b1;
+  text-decoration: underline;
+}
+
+.aboutus-page .aboutus-content a:hover {
+  color: #341f57;
+}
+
+/* Full Page Layout for Body */
+.aboutus-page .aboutus-content.full-page {
+  width: 100%;
+  height: calc(100vh - 90px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  text-align: center; /* Center-align text for full-page layout */
+}
+
+/* Full Page Headings */
+.aboutus-page .aboutus-content.full-page h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.aboutus-page .aboutus-content.full-page p {
+  font-size: 1.5rem;
+  max-width: 800px;
+  line-height: 2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .aboutus-page .header {
+      flex-direction: column;
+      align-items: center; /* Center everything for mobile */
+      padding: 10px 15px;
+  }
+
+  .aboutus-page .nav-links {
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+  }
+
+  .aboutus-page .language-switcher {
+      justify-content: center;
+      margin-top: 10px;
+  }
+
+  .aboutus-page .aboutus-content {
+      padding: 20px;
+  }
+
+  .aboutus-page .aboutus-content h1 {
+      font-size: 2.5rem;
+  }
+
+  .aboutus-page .aboutus-content h2 {
+      font-size: 1.5rem;
+  }
+
+  .aboutus-page .aboutus-content p {
+      font-size: 1rem;
+  }
+
+  .aboutus-page .aboutus-content.full-page h1 {
+      font-size: 3rem;
+  }
+
+  .aboutus-page .aboutus-content.full-page p {
+      font-size: 1.2rem;
+  }
+}
